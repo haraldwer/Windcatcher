@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://6twvkyisln73"]
+[gd_scene load_steps=5 format=3 uid="uid://6twvkyisln73"]
 
 [ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
 [ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Scenes/lighting.tscn" id="1_qkj3b"]
+[ext_resource type="PackedScene" uid="uid://2od3t0b1t50e" path="res://Scenes/island.tscn" id="4_j7wau"]
 [ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="4_v8ok4"]
 
 [node name="Scene" type="Node3D"]
@@ -32,3 +33,6 @@ size = Vector3(1, 0.18017, 1)
 
 [node name="Water" parent="." instance=ExtResource("4_v8ok4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0180514, 0)
+
+[node name="Island" parent="." instance=ExtResource("4_j7wau")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165.04, 0, -26.6842)

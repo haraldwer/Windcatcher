@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dypvi6kq1ldac"]
+
+[ext_resource type="Script" path="res://Island/island.gd" id="1_dsrdj"]
+[ext_resource type="Script" path="res://Island/Terrain/terrain_gen.gd" id="2_22002"]
+[ext_resource type="Script" path="res://Island/Structure/structure_gen.gd" id="3_7ml8y"]
+[ext_resource type="Script" path="res://Island/Vegetation/vegetation_gen.gd" id="4_8j1ah"]
+[ext_resource type="PackedScene" uid="uid://bfd1x32c6sty" path="res://Island/Vegetation/Rocks/rock01.tscn" id="5_v4lin"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_liibh"]
+noise_type = 0
+frequency = 0.03
+fractal_type = 0
+
+[sub_resource type="Curve" id="Curve_yaxfj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.418182), 0.0, 0.0, 0, 0, Vector2(0.878788, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Island" type="Node3D"]
+script = ExtResource("1_dsrdj")
+height_noise = SubResource("FastNoiseLite_liibh")
+center_curve = SubResource("Curve_yaxfj")
+
+[node name="Terrain" type="MeshInstance3D" parent="."]
+script = ExtResource("2_22002")
+
+[node name="CollisionBody" type="StaticBody3D" parent="Terrain"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Terrain/CollisionBody"]
+
+[node name="Structures" type="Node" parent="."]
+script = ExtResource("3_7ml8y")
+
+[node name="Vegetation" type="Node" parent="."]
+script = ExtResource("4_8j1ah")
+vegetation = Array[PackedScene]([ExtResource("5_v4lin")])
