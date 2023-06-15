@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy3xskwene4l0"]
+
+[ext_resource type="Environment" uid="uid://cx5o6bg4h5s3m" path="res://environment.tres" id="1_imbmu"]
+
+[node name="lighting" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.419864, -0.728551, 0.541228, 0, 0.596337, 0.802734, -0.907587, -0.337039, 0.250381, 4.81048, 23.2028, 15.6434)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_imbmu")

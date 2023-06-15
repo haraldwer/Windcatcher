@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8auespiprw18"]
+
+[ext_resource type="Script" path="res://Water/water.gd" id="1_7fx0c"]
+[ext_resource type="Shader" path="res://Water/simulation.gdshader" id="1_iamkt"]
+[ext_resource type="Shader" uid="uid://ch0xh3v2u0b11" path="res://Water/water_waves.tres" id="2_fjbnl"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5m0s8"]
+viewport_path = NodePath("Collision")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mgeu8"]
+viewport_path = NodePath("Simulation")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umjf2"]
+resource_local_to_scene = true
+shader = ExtResource("1_iamkt")
+shader_parameter/phase = 0.1
+shader_parameter/attenuation = 0.995
+shader_parameter/deltaUV = 1.0
+shader_parameter/resolution = 2048.0
+shader_parameter/sim_tex = SubResource("ViewportTexture_mgeu8")
+shader_parameter/col_tex = SubResource("ViewportTexture_5m0s8")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_umxpr"]
+viewport_path = NodePath("Simulation")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qp788"]
+viewport_path = NodePath("Simulation")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1c0wi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_fjbnl")
+shader_parameter/Amplitude = 1.0
+shader_parameter/WaterColor = Color(0.177459, 0.56433, 0.788268, 1)
+shader_parameter/FoamColor = Color(1, 1, 1, 1)
+shader_parameter/FoamEdge = 0.1
+shader_parameter/WaveSpeed = 1.0
+shader_parameter/FoamDepth = 0.2
+shader_parameter/FoamPow = 1.5
+shader_parameter/BaseOpacity = 0.5
+shader_parameter/simulation2 = SubResource("ViewportTexture_qp788")
+shader_parameter/simulation = SubResource("ViewportTexture_umxpr")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ujl74"]
+material = SubResource("ShaderMaterial_1c0wi")
+size = Vector2(500, 500)
+subdivide_width = 500
+subdivide_depth = 500
+
+[sub_resource type="Environment" id="Environment_p0jis"]
+background_mode = 1
+ambient_light_source = 1
+reflected_light_source = 1
+
+[node name="Water" type="Node3D"]
+script = ExtResource("1_7fx0c")
+
+[node name="Simulation" type="SubViewport" parent="."]
+size = Vector2i(2048, 2048)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Simulation"]
+material = SubResource("ShaderMaterial_umjf2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ujl74")
+
+[node name="Collision" type="SubViewport" parent="."]
+size = Vector2i(2048, 2048)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="WaterCam" type="Camera3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -5, 0)
+cull_mask = 524288
+environment = SubResource("Environment_p0jis")
+projection = 1
+size = 500.0
+far = 5.0

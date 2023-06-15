@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://6twvkyisln73"]
+
+[ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
+[ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Scenes/lighting.tscn" id="1_qkj3b"]
+[ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="4_v8ok4"]
+
+[node name="Scene" type="Node3D"]
+
+[node name="lighting" parent="." instance=ExtResource("1_qkj3b")]
+
+[node name="plane" parent="." instance=ExtResource("1_n5cfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.96631, 18.3302)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(9.48411, 0, 0, 0, 121.59, 0, 0, 0, 11.9417, 27.2831, 31.4654, -23.591)
+use_collision = true
+size = Vector3(1, 0.384404, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(5.28999, 0, 0, 0, 73.5119, 0, 0, 0, 5.09284, -2.22435, 0.370697, -26.6431)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(27.984, 0, 0, 0, 121.59, 0, 0, 0, 25.937, 23.5314, 4.4583, -23.9117)
+use_collision = true
+size = Vector3(1, 0.18017, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(27.984, 0, 0, 0, 121.59, 0, 0, 0, 25.937, 39.6766, 7.82485, -10.7026)
+use_collision = true
+size = Vector3(1, 0.18017, 1)
+
+[node name="Water" parent="." instance=ExtResource("4_v8ok4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0180514, 0)

@@ -1,0 +1,7 @@
+[gd_resource type="Environment" format=3 uid="uid://cx5o6bg4h5s3m"]
+
+[resource]
+background_mode = 1
+background_color = Color(0.737255, 0.882353, 0.956863, 1)
+ssao_enabled = true
+ssil_enabled = true
