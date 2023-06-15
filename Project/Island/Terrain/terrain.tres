@@ -1,0 +1,193 @@
+[gd_resource type="VisualShader" load_steps=18 format=3 uid="uid://b6pvjvofvpg04"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ifow4"]
+parameter_name = "GrassLayer"
+default_value_enabled = true
+default_value = 2.0
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_kbn3s"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_kf8nj"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_p8fk0"]
+parameter_name = "SandColor"
+default_value_enabled = true
+default_value = Color(0.79, 0.731935, 0.6241, 1)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lepw2"]
+parameter_name = "OceanFloorColor"
+default_value_enabled = true
+default_value = Color(0.258824, 0.290196, 0.129412, 1)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_bysgi"]
+parameter_name = "GrassColor"
+default_value_enabled = true
+default_value = Color(0.2288, 0.32, 0.224, 1)
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_o221u"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_8rq6b"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_us6ms"]
+parameter_name = "RockColor"
+default_value_enabled = true
+default_value = Color(0.59, 0.59, 0.59, 1)
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_i85vr"]
+parameter_name = "RockLayer"
+default_value_enabled = true
+default_value = 15.0
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_23obw"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1re74"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_cb5f2"]
+input_name = "inv_view_matrix"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_fry5m"]
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_g8cdh"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_80qo2"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_wcc3x"]
+parameter_name = "SandLayer"
+default_value_enabled = true
+default_value = -7.0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 OceanFloorColor : source_color = vec4(0.258824, 0.290196, 0.129412, 1.000000);
+uniform vec4 SandColor : source_color = vec4(0.790000, 0.731935, 0.624100, 1.000000);
+uniform float SandLayer = -7;
+uniform vec4 GrassColor : source_color = vec4(0.228800, 0.320000, 0.224000, 1.000000);
+uniform float GrassLayer = 2;
+uniform vec4 RockColor : source_color = vec4(0.590000, 0.590000, 0.590000, 1.000000);
+uniform float RockLayer = 15;
+
+
+
+void fragment() {
+// ColorParameter:14
+	vec4 n_out14p0 = OceanFloorColor;
+
+
+// ColorParameter:13
+	vec4 n_out13p0 = SandColor;
+
+
+// FloatParameter:9
+	float n_out9p0 = SandLayer;
+
+
+// Input:5
+	mat4 n_out5p0 = INV_VIEW_MATRIX;
+
+
+// Input:4
+	vec3 n_out4p0 = VERTEX;
+
+
+// TransformVectorMult:6
+	vec3 n_out6p0 = (n_out5p0 * vec4(n_out4p0, 1.0)).xyz;
+
+
+// VectorDecompose:3
+	float n_out3p0 = n_out6p0.x;
+	float n_out3p1 = n_out6p0.y;
+	float n_out3p2 = n_out6p0.z;
+
+
+// Step:7
+	float n_out7p0 = step(n_out9p0, n_out3p1);
+
+
+// Mix:8
+	vec3 n_out8p0 = mix(vec3(n_out14p0.xyz), vec3(n_out13p0.xyz), vec3(n_out7p0));
+
+
+// ColorParameter:15
+	vec4 n_out15p0 = GrassColor;
+
+
+// FloatParameter:10
+	float n_out10p0 = GrassLayer;
+
+
+// Step:11
+	float n_out11p0 = step(n_out10p0, n_out3p1);
+
+
+// Mix:12
+	vec3 n_out12p0 = mix(n_out8p0, vec3(n_out15p0.xyz), vec3(n_out11p0));
+
+
+// ColorParameter:18
+	vec4 n_out18p0 = RockColor;
+
+
+// FloatParameter:19
+	float n_out19p0 = RockLayer;
+
+
+// Step:16
+	float n_out16p0 = step(n_out19p0, n_out3p1);
+
+
+// Mix:17
+	vec3 n_out17p0 = mix(n_out12p0, vec3(n_out18p0.xyz), vec3(n_out16p0));
+
+
+// Output:0
+	ALBEDO = n_out17p0;
+
+
+}
+"
+graph_offset = Vector2(-750.344, 782.76)
+nodes/fragment/0/position = Vector2(940, 800)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVectorDecompose_23obw")
+nodes/fragment/3/position = Vector2(-880, 120)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_1re74")
+nodes/fragment/4/position = Vector2(-1420, 200)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_cb5f2")
+nodes/fragment/5/position = Vector2(-1380, 120)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTransformVecMult_fry5m")
+nodes/fragment/6/position = Vector2(-1100, 120)
+nodes/fragment/7/node = SubResource("VisualShaderNodeStep_g8cdh")
+nodes/fragment/7/position = Vector2(-340, 480)
+nodes/fragment/8/node = SubResource("VisualShaderNodeMix_80qo2")
+nodes/fragment/8/position = Vector2(-100, 280)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatParameter_wcc3x")
+nodes/fragment/9/position = Vector2(-640, 480)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_ifow4")
+nodes/fragment/10/position = Vector2(-420, 920)
+nodes/fragment/11/node = SubResource("VisualShaderNodeStep_kbn3s")
+nodes/fragment/11/position = Vector2(-120, 920)
+nodes/fragment/12/node = SubResource("VisualShaderNodeMix_kf8nj")
+nodes/fragment/12/position = Vector2(200, 620)
+nodes/fragment/13/node = SubResource("VisualShaderNodeColorParameter_p8fk0")
+nodes/fragment/13/position = Vector2(-440, 280)
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorParameter_lepw2")
+nodes/fragment/14/position = Vector2(-440, 80)
+nodes/fragment/15/node = SubResource("VisualShaderNodeColorParameter_bysgi")
+nodes/fragment/15/position = Vector2(-220, 700)
+nodes/fragment/16/node = SubResource("VisualShaderNodeStep_o221u")
+nodes/fragment/16/position = Vector2(380, 1080)
+nodes/fragment/17/node = SubResource("VisualShaderNodeMix_8rq6b")
+nodes/fragment/17/position = Vector2(700, 780)
+nodes/fragment/18/node = SubResource("VisualShaderNodeColorParameter_us6ms")
+nodes/fragment/18/position = Vector2(280, 860)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatParameter_i85vr")
+nodes/fragment/19/position = Vector2(80, 1080)
+nodes/fragment/connections = PackedInt32Array(4, 0, 6, 1, 5, 0, 6, 0, 6, 0, 3, 0, 3, 1, 7, 1, 9, 0, 7, 0, 10, 0, 11, 0, 3, 1, 11, 1, 8, 0, 12, 0, 7, 0, 8, 2, 11, 0, 12, 2, 13, 0, 8, 1, 14, 0, 8, 0, 15, 0, 12, 1, 19, 0, 16, 0, 16, 0, 17, 2, 18, 0, 17, 1, 12, 0, 17, 0, 17, 0, 0, 0, 3, 1, 16, 1)

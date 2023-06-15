@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bp2kkpypddrt4"
+path="res://.godot/imported/rock_00.obj-d104f06c99fb968be9835493b7c0d794.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rock_00.obj-d104f06c99fb968be9835493b7c0d794.mesh"]
+
+source_file="res://Island/Vegetation/Rocks/rock_00.obj"
+dest_files=["res://.godot/imported/rock_00.obj-d104f06c99fb968be9835493b7c0d794.mesh", "res://.godot/imported/rock_00.obj-d104f06c99fb968be9835493b7c0d794.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

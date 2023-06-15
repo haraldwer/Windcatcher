@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dypvi6kq1ldac"]
+[gd_scene load_steps=11 format=3 uid="uid://dypvi6kq1ldac"]
 
 [ext_resource type="Script" path="res://Island/island.gd" id="1_dsrdj"]
 [ext_resource type="Script" path="res://Island/Terrain/terrain_gen.gd" id="2_22002"]
+[ext_resource type="Shader" uid="uid://b6pvjvofvpg04" path="res://Island/Terrain/terrain.tres" id="2_m05aq"]
 [ext_resource type="Script" path="res://Island/Structure/structure_gen.gd" id="3_7ml8y"]
 [ext_resource type="Script" path="res://Island/Vegetation/vegetation_gen.gd" id="4_8j1ah"]
-[ext_resource type="PackedScene" uid="uid://bfd1x32c6sty" path="res://Island/Vegetation/Rocks/rock01.tscn" id="5_v4lin"]
+[ext_resource type="PackedScene" uid="uid://bfd1x32c6sty" path="res://Island/Vegetation/Rocks/rock_00.tscn" id="5_s78mr"]
+[ext_resource type="PackedScene" uid="uid://wodnyl2o3uwt" path="res://Island/Vegetation/Trees/tree_00.tscn" id="6_874ap"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_liibh"]
 noise_type = 0
@@ -15,12 +17,24 @@ fractal_type = 0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.418182), 0.0, 0.0, 0, 0, Vector2(0.878788, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h25gj"]
+render_priority = 0
+shader = ExtResource("2_m05aq")
+shader_parameter/OceanFloorColor = Color(0.258824, 0.290196, 0.129412, 1)
+shader_parameter/SandColor = Color(0.79, 0.731935, 0.6241, 1)
+shader_parameter/SandLayer = -7.0
+shader_parameter/GrassColor = Color(0.2288, 0.32, 0.224, 1)
+shader_parameter/GrassLayer = 2.0
+shader_parameter/RockColor = Color(0.59, 0.59, 0.59, 1)
+shader_parameter/RockLayer = 15.0
+
 [node name="Island" type="Node3D"]
 script = ExtResource("1_dsrdj")
 height_noise = SubResource("FastNoiseLite_liibh")
 center_curve = SubResource("Curve_yaxfj")
 
 [node name="Terrain" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_h25gj")
 script = ExtResource("2_22002")
 
 [node name="CollisionBody" type="StaticBody3D" parent="Terrain"]
@@ -32,4 +46,4 @@ script = ExtResource("3_7ml8y")
 
 [node name="Vegetation" type="Node" parent="."]
 script = ExtResource("4_8j1ah")
-vegetation = Array[PackedScene]([ExtResource("5_v4lin")])
+vegetation = Array[PackedScene]([ExtResource("5_s78mr"), ExtResource("6_874ap")])

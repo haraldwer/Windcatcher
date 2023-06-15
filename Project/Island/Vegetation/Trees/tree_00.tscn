@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://wodnyl2o3uwt"]
+
+[ext_resource type="ArrayMesh" uid="uid://cnop0aqqh0q1u" path="res://Island/Vegetation/Trees/tree_00.obj" id="1_1ghyr"]
+[ext_resource type="Material" uid="uid://c2m7lugd3umsx" path="res://atlas.tres" id="1_k23bj"]
+[ext_resource type="Script" path="res://Island/Vegetation/Trees/tree.gd" id="1_u8avy"]
+[ext_resource type="ArrayMesh" uid="uid://bnaga21gb5qvw" path="res://Island/Vegetation/Trees/tree_00_top.obj" id="3_c73gb"]
+
+[node name="tree_00" type="Node3D"]
+script = ExtResource("1_u8avy")
+top_chance = 70
+
+[node name="Tree00" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_k23bj")
+mesh = ExtResource("1_1ghyr")
+
+[node name="Tree00Top" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_k23bj")
+mesh = ExtResource("3_c73gb")

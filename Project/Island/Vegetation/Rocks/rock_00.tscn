@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfd1x32c6sty"]
+
+[ext_resource type="ArrayMesh" uid="uid://bp2kkpypddrt4" path="res://Island/Vegetation/Rocks/rock_00.obj" id="1_dxf4u"]
+
+[node name="rock_00" type="Node3D"]
+
+[node name="rock_00" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_dxf4u")

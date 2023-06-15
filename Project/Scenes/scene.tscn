@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://6twvkyisln73"]
+[gd_scene load_steps=7 format=3 uid="uid://6twvkyisln73"]
 
 [ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
 [ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Scenes/lighting.tscn" id="1_qkj3b"]
-[ext_resource type="PackedScene" uid="uid://2od3t0b1t50e" path="res://Scenes/island.tscn" id="4_j7wau"]
+[ext_resource type="Shader" uid="uid://b6pvjvofvpg04" path="res://Island/Terrain/terrain.tres" id="3_xugfn"]
+[ext_resource type="PackedScene" uid="uid://dypvi6kq1ldac" path="res://Island/island.tscn" id="4_ctymu"]
 [ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="4_v8ok4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uf3hw"]
+render_priority = 0
+shader = ExtResource("3_xugfn")
+shader_parameter/OceanFloorColor = Color(0, 0, 0, 1)
+shader_parameter/SandColor = null
+shader_parameter/SandLayer = null
+shader_parameter/GrassColor = Color(0.158472, 0.158472, 0.158472, 1)
+shader_parameter/GrassLayer = 4.0
+shader_parameter/RockColor = Color(0.674814, 0.674815, 0.674814, 1)
+shader_parameter/RockLayer = 20.0
 
 [node name="Scene" type="Node3D"]
 
@@ -19,6 +31,7 @@ size = Vector3(1, 0.384404, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(5.28999, 0, 0, 0, 73.5119, 0, 0, 0, 5.09284, -2.22435, 0.370697, -26.6431)
+material_override = SubResource("ShaderMaterial_uf3hw")
 use_collision = true
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
@@ -34,5 +47,11 @@ size = Vector3(1, 0.18017, 1)
 [node name="Water" parent="." instance=ExtResource("4_v8ok4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0180514, 0)
 
-[node name="Island" parent="." instance=ExtResource("4_j7wau")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165.04, 0, -26.6842)
+[node name="Island" parent="." instance=ExtResource("4_ctymu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.257, 0, -201.322)
+
+[node name="Island2" parent="." instance=ExtResource("4_ctymu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171.124, 0, -123.287)
+
+[node name="Island3" parent="." instance=ExtResource("4_ctymu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.656, 0, 155.884)
