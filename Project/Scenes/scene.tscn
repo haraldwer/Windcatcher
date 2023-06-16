@@ -1,21 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://6twvkyisln73"]
+[gd_scene load_steps=8 format=3 uid="uid://6twvkyisln73"]
 
 [ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
 [ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Scenes/lighting.tscn" id="1_qkj3b"]
 [ext_resource type="Shader" uid="uid://b6pvjvofvpg04" path="res://Island/Terrain/terrain.tres" id="3_xugfn"]
 [ext_resource type="PackedScene" uid="uid://dypvi6kq1ldac" path="res://Island/island.tscn" id="4_ctymu"]
 [ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="4_v8ok4"]
+[ext_resource type="PackedScene" uid="uid://fusq7jk8t81d" path="res://Wind/wind_area.tscn" id="6_snkte"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uf3hw"]
 render_priority = 0
 shader = ExtResource("3_xugfn")
-shader_parameter/OceanFloorColor = Color(0, 0, 0, 1)
-shader_parameter/SandColor = null
-shader_parameter/SandLayer = null
-shader_parameter/GrassColor = Color(0.158472, 0.158472, 0.158472, 1)
-shader_parameter/GrassLayer = 4.0
-shader_parameter/RockColor = Color(0.674814, 0.674815, 0.674814, 1)
-shader_parameter/RockLayer = 20.0
+shader_parameter/OceanFloorColor = Color(0.258824, 0.290196, 0.129412, 1)
+shader_parameter/SandColor = Color(0.79, 0.731935, 0.6241, 1)
+shader_parameter/SandLayer = -7.0
+shader_parameter/GrassColor = Color(0.2288, 0.32, 0.224, 1)
+shader_parameter/GrassLayer = 2.0
+shader_parameter/RockColor = Color(0.59, 0.59, 0.59, 1)
+shader_parameter/RockLayer = 15.0
 
 [node name="Scene" type="Node3D"]
 
@@ -55,3 +56,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171.124, 0, -123.287)
 
 [node name="Island3" parent="." instance=ExtResource("4_ctymu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.656, 0, 155.884)
+
+[node name="Wind" parent="." instance=ExtResource("6_snkte")]
+transform = Transform3D(20, 0, 0, 0, 10.96, 18.6175, 0, -27.9263, 7.30664, 11.865, 38.8063, -36.6218)

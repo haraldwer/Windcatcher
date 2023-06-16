@@ -26,8 +26,14 @@ const ROTATION_SPEED = 10.0
 const TILT = 2.0
 var aim_rotation = Vector3.ZERO
 
+const WIND_ACC = 80.0
+const WIND_ROT = 10.0
+const MIN_WIND = 0.3
+var wind
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	wind = get_parent().get_node("Wind")
 	pass
 	
 func _set_input(vector, look):
@@ -68,6 +74,13 @@ func _physics_process(delta):
 		velocity.y -= up_total * GRAVITY * UP_MULTIPLIER
 		up_total = 0
 		up_target = UP_THRESHOLD # + random()
+	
+	# Wind
+	var wind_dir = wind.get_wind();
+	if wind_dir != Vector3.ZERO:
+		var wind_dot = wind_dir.dot(-global_transform.basis.z)
+		var wind_mul = clamp(max(wind_dot, 0.0) + MIN_WIND, 0.0, 1.0)
+		velocity += wind_dir * WIND_ACC * delta * wind_mul;
 	
 	# Gravity
 	velocity.y += GRAVITY * delta

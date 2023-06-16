@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bd23urqq5qn8h"
+path="res://.godot/imported/dock_00.obj-12e97d11f0136a227a81f45f92cefa06.mesh"
+
+[deps]
+
+files=["res://.godot/imported/dock_00.obj-12e97d11f0136a227a81f45f92cefa06.mesh"]
+
+source_file="res://Island/Structure/dock_00.obj"
+dest_files=["res://.godot/imported/dock_00.obj-12e97d11f0136a227a81f45f92cefa06.mesh", "res://.godot/imported/dock_00.obj-12e97d11f0136a227a81f45f92cefa06.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

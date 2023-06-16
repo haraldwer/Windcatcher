@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbqpaii7jh1gf"]
+
+[ext_resource type="Script" path="res://Island/Structure/dock.gd" id="1_h7ssm"]
+[ext_resource type="ArrayMesh" uid="uid://bd23urqq5qn8h" path="res://Island/Structure/dock_00.obj" id="2_2ov8r"]
+[ext_resource type="Material" uid="uid://c2m7lugd3umsx" path="res://atlas.tres" id="3_73q6y"]
+
+[node name="dock" type="Node3D"]
+script = ExtResource("1_h7ssm")
+dock_meshes = Array[Mesh]([ExtResource("2_2ov8r")])
+material = ExtResource("3_73q6y")

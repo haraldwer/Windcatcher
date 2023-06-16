@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1tvte7xfmr65"]
+
+[ext_resource type="Script" path="res://Island/Structure/building.gd" id="1_y20hk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u34kp"]
+albedo_color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tc5ul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gf4g"]
+albedo_color = Color(0.458824, 0.356863, 0.286275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6qxrw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iyoq"]
+albedo_color = Color(0.713726, 0.729412, 0.635294, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5e1l"]
+albedo_color = Color(0.419608, 0.203922, 0.152941, 1)
+
+[node name="building" type="Node3D"]
+script = ExtResource("1_y20hk")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_u34kp")
+mesh = SubResource("BoxMesh_tc5ul")
+
+[node name="Door" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1.16084, 0, 0, 0, 0.715071, 0, 0, 0, 0.390782, 0.00490403, 0.778698, 0.0122021)
+material_override = SubResource("StandardMaterial3D_3gf4g")
+mesh = SubResource("BoxMesh_6qxrw")
+
+[node name="Base" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1.33852, 0, 0, 0, 1, 0, 0, 0, 0.663062, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_u34kp")
+mesh = SubResource("BoxMesh_tc5ul")
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999338, 0, 0, 0, 0.999338, 0, 0, 0, 0.999338, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_5iyoq")
+mesh = SubResource("BoxMesh_tc5ul")
+skeleton = NodePath("../Base")
+
+[node name="Roof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 0.5, 0, 0, 0, 1.1, 0, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5e1l")
+mesh = SubResource("BoxMesh_tc5ul")
+skeleton = NodePath("../Base")

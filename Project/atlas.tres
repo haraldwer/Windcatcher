@@ -3,5 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://u42hu4u7scy" path="res://atlas.png" id="1_f7sr4"]
 
 [resource]
+diffuse_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource("1_f7sr4")
 texture_filter = 0

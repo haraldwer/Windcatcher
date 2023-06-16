@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://fusq7jk8t81d"]
+
+[ext_resource type="Script" path="res://Wind/wind_area.gd" id="1_qb34l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucswv"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.619608, 0.792157, 1, 0.454902)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5ajge"]
+material = SubResource("StandardMaterial3D_ucswv")
+flip_faces = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iyelo"]
+
+[node name="WindArea" type="Node3D"]
+script = ExtResource("1_qb34l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_5ajge")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_iyelo")
+
+[connection signal="body_entered" from="Area3D" to="." method="on_enter"]
+[connection signal="body_exited" from="Area3D" to="." method="on_exit"]

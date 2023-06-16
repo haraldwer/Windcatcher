@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcnto7w1ounwb"]
+
+[ext_resource type="Script" path="res://Wind/wind_manager.gd" id="1_5kmxs"]
+
+[node name="wind_manager" type="Node3D"]
+script = ExtResource("1_5kmxs")

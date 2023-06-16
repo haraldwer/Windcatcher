@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://b8auespiprw18"]
 
 [ext_resource type="Script" path="res://Water/water.gd" id="1_7fx0c"]
-[ext_resource type="Shader" path="res://Water/simulation.gdshader" id="1_iamkt"]
-[ext_resource type="Shader" uid="uid://ch0xh3v2u0b11" path="res://Water/water_waves.tres" id="2_fjbnl"]
+[ext_resource type="Shader" path="res://Water/water_sim.gdshader" id="1_iamkt"]
+[ext_resource type="Shader" uid="uid://ch0xh3v2u0b11" path="res://Water/water.tres" id="2_fjbnl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5m0s8"]
 viewport_path = NodePath("Collision")
@@ -13,9 +13,10 @@ viewport_path = NodePath("Simulation")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_umjf2"]
 resource_local_to_scene = true
 shader = ExtResource("1_iamkt")
-shader_parameter/phase = 0.1
-shader_parameter/attenuation = 0.995
-shader_parameter/deltaUV = 1.0
+shader_parameter/phase = 0.15
+shader_parameter/attenuation = 0.99
+shader_parameter/deltaUV = 0.8
+shader_parameter/precision = 10000.0
 shader_parameter/resolution = 2048.0
 shader_parameter/sim_tex = SubResource("ViewportTexture_mgeu8")
 shader_parameter/col_tex = SubResource("ViewportTexture_5m0s8")
@@ -38,12 +39,14 @@ shader_parameter/WaveSpeed = 1.0
 shader_parameter/FoamDepth = 0.2
 shader_parameter/FoamPow = 1.5
 shader_parameter/BaseOpacity = 0.5
+shader_parameter/DeepOpDepth = 0.1
+shader_parameter/DeepOpPow = 2.0
 shader_parameter/simulation2 = SubResource("ViewportTexture_qp788")
 shader_parameter/simulation = SubResource("ViewportTexture_umxpr")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ujl74"]
 material = SubResource("ShaderMaterial_1c0wi")
-size = Vector2(500, 500)
+size = Vector2(250, 250)
 subdivide_width = 500
 subdivide_depth = 500
 
@@ -76,10 +79,10 @@ size = Vector2i(2048, 2048)
 render_target_clear_mode = 2
 render_target_update_mode = 4
 
-[node name="WaterCam" type="Camera3D" parent="Collision"]
+[node name="CollisionCam" type="Camera3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -5, 0)
 cull_mask = 524288
 environment = SubResource("Environment_p0jis")
 projection = 1
-size = 500.0
+size = 250.0
 far = 5.0
