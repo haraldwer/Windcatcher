@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://fusq7jk8t81d"]
+[gd_scene load_steps=8 format=3 uid="uid://fusq7jk8t81d"]
 
 [ext_resource type="Script" path="res://Wind/wind_area.gd" id="1_qb34l"]
+[ext_resource type="Shader" path="res://Wind/wind_streak.gdshader" id="2_nnywq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucswv"]
 transparency = 1
@@ -13,16 +14,88 @@ flip_faces = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iyelo"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3j1x"]
+render_priority = 2
+shader = ExtResource("2_nnywq")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Alpha = 0.7
+shader_parameter/EdgeSize = 0.5
+shader_parameter/StreakLength = 1.5
+shader_parameter/StreakSpeed = 0.2
+shader_parameter/StreakSize = 0.1
+shader_parameter/NoiseScale = Vector3(1, 1, 1)
+shader_parameter/NoiseMul = 0.2
+shader_parameter/PointMul = 0.5
+shader_parameter/SlowNoiseScale = 0.01
+shader_parameter/DepthFade = 20.0
+shader_parameter/CamFade = 2.0
+shader_parameter/CamOffset = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_jlig2"]
+material = SubResource("ShaderMaterial_k3j1x")
+custom_aabb = AABB(0, 0, 0, 25, 25, 25)
+size = Vector2(0.04, 2)
+subdivide_depth = 100
+
 [node name="WindArea" type="Node3D"]
 script = ExtResource("1_qb34l")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Visualization" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_5ajge")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_iyelo")
+
+[node name="Streak" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak2" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak3" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak4" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak5" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak6" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak7" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak8" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak9" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak10" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak11" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
+
+[node name="Streak12" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_jlig2")
 
 [connection signal="body_entered" from="Area3D" to="." method="on_enter"]
 [connection signal="body_exited" from="Area3D" to="." method="on_exit"]

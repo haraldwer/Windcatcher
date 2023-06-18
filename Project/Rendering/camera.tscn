@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpicwol81fwpp"]
+
+[ext_resource type="Script" path="res://Plane/camera.gd" id="1_j4qxf"]
+[ext_resource type="Shader" path="res://Rendering/postprocess_edgedetect.gdshader" id="2_amni5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vly8"]
+render_priority = 100
+shader = ExtResource("2_amni5")
+shader_parameter/weight = 0.5
+shader_parameter/extent = 2
+shader_parameter/diff_step = 0.1
+shader_parameter/depth_thres = 0.1
+shader_parameter/dist_thres = 0.1
+shader_parameter/max_dist = 500.0
+shader_parameter/fade_dist = 300.0
+shader_parameter/height_offset = -10.0
+shader_parameter/height_mul = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_1m48y"]
+material = SubResource("ShaderMaterial_2vly8")
+size = Vector2(2, 2)
+
+[node name="Camera" type="Camera3D"]
+transform = Transform3D(1, -8.3877e-09, -8.12301e-10, 8.41641e-09, 0.989283, 0.146014, -4.21123e-10, -0.146014, 0.989283, -0.0856332, 6.56403, 10.5807)
+cull_mask = 524287
+fov = 90.0
+script = ExtResource("1_j4qxf")
+
+[node name="EdgeDetect" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("QuadMesh_1m48y")

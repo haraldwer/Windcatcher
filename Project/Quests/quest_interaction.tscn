@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdc22p2eurhyc"]
+
+[ext_resource type="Script" path="res://Quests/quest_interaction.gd" id="1_pq2rv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3sa6v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_warcn"]
+render_priority = 3
+transparency = 1
+albedo_color = Color(1, 0, 1, 0.282353)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nclkg"]
+material = SubResource("StandardMaterial3D_warcn")
+
+[node name="QuestInteraction" type="Node3D"]
+script = ExtResource("1_pq2rv")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Collider" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_3sa6v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/Collider"]
+mesh = SubResource("BoxMesh_nclkg")
+skeleton = NodePath("../../..")
+
+[connection signal="body_entered" from="Area3D" to="." method="on_enter"]
+[connection signal="body_exited" from="Area3D" to="." method="on_exit"]

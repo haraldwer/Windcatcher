@@ -6,8 +6,7 @@ func get_vertex(x, y, dx, dy) -> Vector3:
 	var ny = y + dy
 	# World uv
 	var island = get_parent()
-	var face_size = island.SIZE / island.SUBDIVISIONS
-	var offset = Vector3(nx, 0.0, ny) * face_size
+	var offset = Vector3(nx, 0.0, ny) * (1.0 / island.PRECISION)
 	var uv = offset + island.global_position
 	var height = island.get_height(uv.x, uv.z)
 	return offset + Vector3.UP * height
@@ -17,8 +16,10 @@ func generate():
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
 	var island = get_parent()
-	for x in island.SUBDIVISIONS:
-		for y in island.SUBDIVISIONS:
+	var subdivisions = int(island.Size * island.PRECISION)
+	print("Subdivisions ", subdivisions)
+	for x in subdivisions:
+		for y in subdivisions:
 			# Two triangles, four corners
 			st.add_vertex(get_vertex(x, y, 0, 0))
 			st.add_vertex(get_vertex(x, y, 1, 0))

@@ -9,7 +9,7 @@ func generate():
 	island.add_child(i1)
 	i1.generate()
 	
-		
+	
 	var i2 = building.instantiate()
 	island.add_child(i2)
 	i2.generate()

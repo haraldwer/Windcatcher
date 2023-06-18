@@ -11,8 +11,8 @@ func place_vegetation():
 	var island = get_parent()
 	
 	var pos = island.global_position
-	var x = randf_range(pos.x, pos.x + island.SIZE)
-	var y = randf_range(pos.z, pos.z + island.SIZE)
+	var x = randf_range(pos.x, pos.x + island.Size)
+	var y = randf_range(pos.z, pos.z + island.Size)
 	
 	var height = island.get_height(x, y)
 	if height > VEGETATION_START:
@@ -30,8 +30,8 @@ func place_vegetation():
 func generate():
 	
 	var island = get_parent()
-	var area = island.SIZE * island.SIZE
-	
+	var area = island.Size * island.Size
+	print("Vegetation ", area * DENSITY)
 	for n in area * DENSITY:
 		place_vegetation()
 	

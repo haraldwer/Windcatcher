@@ -9,8 +9,7 @@ func get_wind() -> Vector3:
 func on_enter(area):
 	print("Enter wind volume")
 	area_count += 1
-	var v = Vector3.ZERO
-	wind_dir = (-area.global_transform.basis.y).normalized()
+	wind_dir = (area.global_transform.basis.y).normalized()
 	pass
 	
 func on_exit(area):

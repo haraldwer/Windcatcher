@@ -152,7 +152,8 @@ float density(vec3 pos, vec3 node_pos)
 	float y_weight = min(top_y_weight, bottom_y_weight);
 	
 	float density = clamp(noise + y_weight, 0.0f, 1.0f) * flat_shape;
-	return density * density_mul; //step(0.1f, density) * density_mul;
+	return step(0.1f, density) * density_mul;
+	//return density * density_mul; //step(0.1f, density) * density_mul;
 }
 
 void fragment() {
@@ -191,7 +192,8 @@ void fragment() {
 	}
 
 	ALBEDO = color; 
-	ALPHA = step(0.1 ,total_density); // clamp(total_density, 0.0f, density_max);	
+	ALPHA = clamp(total_density, 0.0f, density_max);	
+	//ALPHA = step(0.1 ,total_density); // clamp(total_density, 0.0f, density_max);	
 	//ALBEDO = vec3(density(world_vert, NODE_POSITION_WORLD));
 	//ALBEDO = vec3(volume_bounds(world_vert, NODE_POSITION_WORLD));
 	//ALBEDO = vec3(scene_depth / 5.0f); 

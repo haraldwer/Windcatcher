@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Windcatcher"
-run/main_scene="res://Scenes/scene.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+run/main_scene="res://scene.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [filesystem]
@@ -50,3 +50,22 @@ down={
 
 renderer/rendering_method="gl_compatibility"
 anti_aliasing/quality/use_taa=true
+
+[shader_globals]
+
+specular_smoothness={
+"type": "float",
+"value": 0.05
+}
+fresnel_smoothness={
+"type": "float",
+"value": 0.05
+}
+outline_width={
+"type": "float",
+"value": 4.0
+}
+outline_color={
+"type": "color",
+"value": Color(0, 0, 0, 1)
+}

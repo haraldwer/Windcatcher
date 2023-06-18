@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b76w4c0nnj160"]
+[gd_scene load_steps=10 format=3 uid="uid://b76w4c0nnj160"]
 
 [ext_resource type="Script" path="res://Plane/plane.gd" id="1_a4kf7"]
 [ext_resource type="ArrayMesh" uid="uid://csq15j388uorn" path="res://Plane/plane.obj" id="1_q0qal"]
 [ext_resource type="Script" path="res://Plane/movement.gd" id="2_cmu0h"]
 [ext_resource type="Material" uid="uid://c2m7lugd3umsx" path="res://atlas.tres" id="2_otbyx"]
-[ext_resource type="Script" path="res://Plane/camera.gd" id="5_or7m5"]
+[ext_resource type="PackedScene" uid="uid://cpicwol81fwpp" path="res://Rendering/camera.tscn" id="5_k2ff7"]
 [ext_resource type="Script" path="res://Plane/controller.gd" id="6_docuf"]
-[ext_resource type="Shader" path="res://postprocess.gdshader" id="6_whdq8"]
 [ext_resource type="Script" path="res://Plane/wind.gd" id="7_mn3f1"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ibej"]
@@ -15,15 +14,6 @@ points = PackedVector3Array(1.09765, -0.904717, -0.0968736, 2.6126, -0.0327524, 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88k34"]
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgcou"]
-render_priority = 0
-shader = ExtResource("6_whdq8")
-
-[sub_resource type="QuadMesh" id="QuadMesh_7yt20"]
-material = SubResource("ShaderMaterial_hgcou")
-flip_faces = true
-size = Vector2(2, 2)
 
 [node name="Plane" type="Node3D"]
 script = ExtResource("1_a4kf7")
@@ -41,23 +31,17 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.085
 material_override = ExtResource("2_otbyx")
 gi_mode = 0
 mesh = ExtResource("1_q0qal")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="WaterCollision" type="MeshInstance3D" parent="CharacterBody"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0852437, 0, 1.15327)
 layers = 524288
 material_override = SubResource("StandardMaterial3D_88k34")
+gi_mode = 0
 mesh = ExtResource("1_q0qal")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, -8.3877e-09, -8.12301e-10, 8.41641e-09, 0.989283, 0.146014, -4.21123e-10, -0.146014, 0.989283, -0.0856332, 6.56403, 10.5807)
-cull_mask = 524287
-fov = 90.0
-script = ExtResource("5_or7m5")
-
-[node name="PostProcess" type="MeshInstance3D" parent="Camera"]
-mesh = SubResource("QuadMesh_7yt20")
+[node name="Camera" parent="." instance=ExtResource("5_k2ff7")]
 
 [node name="Controller" type="Node" parent="."]
 script = ExtResource("6_docuf")

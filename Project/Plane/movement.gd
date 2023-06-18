@@ -32,7 +32,6 @@ const MIN_WIND = 0.3
 var wind
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	wind = get_parent().get_node("Wind")
 	pass
 	
@@ -40,7 +39,7 @@ func _set_input(vector, look):
 	input_vector = vector
 	input_look = look
 	pass
-	
+
 func _process(delta):
 	target_speed += SPEED_CHANGE * input_vector.y; 
 	target_speed = clamp(target_speed, 0.0, MAX_SPEED)
@@ -53,7 +52,6 @@ func _process(delta):
 	
 	aim_rotation.x += SENSITIVITY * input_look.y
 	aim_rotation.y += SENSITIVITY * input_look.x
-	
 	pass
 	
 func _physics_process(delta):

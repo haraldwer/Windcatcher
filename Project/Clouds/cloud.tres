@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://gt7loyjb43o8"]
+
+[ext_resource type="Shader" path="res://Clouds/cloud_sphere.gdshader" id="1_fycsy"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fycsy")
+shader_parameter/yOff = 1.1
+shader_parameter/yPow = 1.5
+shader_parameter/yMulPow = 0.3
+shader_parameter/FlatNoiseScale = 0.05
+shader_parameter/FlatNoiseMul = 0.5
+shader_parameter/FlatNoiseBase = 0.5
+shader_parameter/TopNoiseScale = 0.1
+shader_parameter/TopNoiseMul = 1.0
+shader_parameter/ColorTop = Color(1, 1, 1, 1)
+shader_parameter/ColorBottom = Color(0.87451, 0.87451, 0.87451, 1)

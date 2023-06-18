@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://6twvkyisln73"]
+
+[ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
+[ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Rendering/lighting.tscn" id="1_qkj3b"]
+[ext_resource type="PackedScene" uid="uid://dypvi6kq1ldac" path="res://Island/island.tscn" id="4_ctymu"]
+[ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="4_v8ok4"]
+[ext_resource type="Script" path="res://world_gen.gd" id="5_hxnl2"]
+[ext_resource type="PackedScene" uid="uid://fusq7jk8t81d" path="res://Wind/wind_area.tscn" id="6_snkte"]
+
+[node name="Scene" type="Node3D"]
+
+[node name="lighting" parent="." instance=ExtResource("1_qkj3b")]
+
+[node name="plane" parent="." instance=ExtResource("1_n5cfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.96631, 18.3302)
+
+[node name="Water" parent="." instance=ExtResource("4_v8ok4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0180514, 0)
+
+[node name="Wind" parent="." instance=ExtResource("6_snkte")]
+transform = Transform3D(33.6424, 0, 0, 0, 10.96, 18.6175, 0, -27.9263, 7.30664, 11.865, 38.8063, -36.6218)
+
+[node name="WorldGen" type="Node3D" parent="."]
+script = ExtResource("5_hxnl2")
+Characters = [null, null, null, null, null, null]
+IslandType = ExtResource("4_ctymu")

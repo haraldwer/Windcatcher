@@ -24,8 +24,8 @@ func generate():
 	
 	var island = get_parent()
 	
-	var x = island.global_position.x + island.SIZE / 2
-	var y = island.global_position.z + island.SIZE / 2
+	var x = island.global_position.x + island.Size / 2
+	var y = island.global_position.z + island.Size / 2
 	
 	var angle = randf_range(0, PI * 2)
 	var dx = cos(angle) * STEP_SIZE
