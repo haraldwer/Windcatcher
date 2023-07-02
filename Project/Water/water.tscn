@@ -30,7 +30,7 @@ viewport_path = NodePath("Simulation")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1c0wi"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = -1
 shader = ExtResource("2_fjbnl")
 shader_parameter/Amplitude = 1.0
 shader_parameter/WaterColor = Color(0.177459, 0.56433, 0.788268, 1)
@@ -57,7 +57,7 @@ ambient_light_source = 1
 reflected_light_source = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yntmd"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("4_yw51m")
 shader_parameter/WaterColor = Color(0.177459, 0.56433, 0.788268, 1)
 shader_parameter/FoamColor = Color(1, 1, 1, 1)

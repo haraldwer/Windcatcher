@@ -403,6 +403,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-124.913, 312.082)
 modes/diffuse = 3
 nodes/vertex/0/position = Vector2(900, 40)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_kmmwv")

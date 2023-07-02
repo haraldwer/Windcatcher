@@ -1,15 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://b76w4c0nnj160"]
+[gd_scene load_steps=17 format=3 uid="uid://b76w4c0nnj160"]
 
 [ext_resource type="Script" path="res://Plane/plane.gd" id="1_a4kf7"]
 [ext_resource type="ArrayMesh" uid="uid://csq15j388uorn" path="res://Plane/plane.obj" id="1_q0qal"]
 [ext_resource type="Script" path="res://Plane/movement.gd" id="2_cmu0h"]
 [ext_resource type="Material" uid="uid://c2m7lugd3umsx" path="res://atlas.tres" id="2_otbyx"]
 [ext_resource type="PackedScene" uid="uid://cpicwol81fwpp" path="res://Rendering/camera.tscn" id="5_k2ff7"]
+[ext_resource type="Shader" path="res://Plane/propeller_mesh.gdshader" id="6_aboqm"]
 [ext_resource type="Script" path="res://Plane/controller.gd" id="6_docuf"]
+[ext_resource type="Script" path="res://Plane/propeller.gd" id="6_eqr7t"]
 [ext_resource type="Script" path="res://Plane/wind.gd" id="7_mn3f1"]
+[ext_resource type="Shader" path="res://Plane/propeller_plane.gdshader" id="7_rln8o"]
+[ext_resource type="ArrayMesh" uid="uid://wxog8ufiw03r" path="res://Plane/propeller.obj" id="8_o8fpn"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ibej"]
 points = PackedVector3Array(1.09765, -0.904717, -0.0968736, 2.6126, -0.0327524, 0.83385, 2.35782, 0.302267, -3.51031, -2.00687, 0.70662, 0.105371, 1.11238, -0.0372449, 3.51031, -1.56374, -0.0277606, -0.0938474, 0.77249, -0.0372449, -3.284, -0.289516, 0.984448, -1.01589, 2.35782, 0.528678, 3.51031, 2.0759, -0.858904, -0.102909, -0.498008, 0.990959, 0.920213, 2.71559, 0.944905, -0.762142, 0.885623, 0.528678, -3.3968, 0.128976, -0.793203, 0.0952092, 0.319955, 0.528678, 2.94418, 1.86676, 0.99924, 1.13422, 2.56739, -0.542528, 0.305968, 1.88439, -0.763212, 1.04322, -1.88996, 0.17681, 0.21038, 1.79167, -0.0372449, -3.51031, 2.13107, 0.0756448, 3.51031, 2.35782, 0.528678, -3.51031, -1.903, 0.813278, -0.211621, 1.86676, 0.99924, -1.13422, 2.60658, -0.448499, -0.62326, 0.206822, 0.0756448, 2.83067, -1.88996, 0.17681, -0.21038, 2.71469, 0.944557, 0.761855, 1.88447, -0.763253, -1.04327, 0.124726, -0.615746, -0.781684, 0.206822, 0.0756448, -2.83067, 0.124446, -0.616654, 0.782802)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fp0cp"]
+render_priority = 0
+shader = ExtResource("6_aboqm")
+shader_parameter/Alpha = 1.0
+shader_parameter/Color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6e4w"]
+render_priority = 0
+shader = ExtResource("7_rln8o")
+shader_parameter/RotSpeed = 2.0
+shader_parameter/Alpha = 1.0
+shader_parameter/Step = 0.3
+shader_parameter/Albedo = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ytfn"]
+material = SubResource("ShaderMaterial_p6e4w")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88k34"]
 shading_mode = 0
@@ -32,6 +53,19 @@ material_override = ExtResource("2_otbyx")
 gi_mode = 0
 mesh = ExtResource("1_q0qal")
 skeleton = NodePath("../../..")
+
+[node name="Propeller" type="Node3D" parent="CharacterBody/Plane"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2.94243, 0.311137, 0.0852438)
+script = ExtResource("6_eqr7t")
+
+[node name="PropellerMesh" type="MeshInstance3D" parent="CharacterBody/Plane/Propeller"]
+material_override = SubResource("ShaderMaterial_fp0cp")
+mesh = ExtResource("8_o8fpn")
+skeleton = NodePath("../../../..")
+
+[node name="PropellerPlane" type="MeshInstance3D" parent="CharacterBody/Plane/Propeller"]
+transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, 0, 0)
+mesh = SubResource("QuadMesh_5ytfn")
 
 [node name="WaterCollision" type="MeshInstance3D" parent="CharacterBody"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0852437, 0, 1.15327)

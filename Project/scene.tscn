@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
 [ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Rendering/lighting.tscn" id="1_qkj3b"]
 [ext_resource type="PackedScene" uid="uid://dypvi6kq1ldac" path="res://Island/island.tscn" id="4_ctymu"]
-[ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="4_v8ok4"]
 [ext_resource type="Script" path="res://world_gen.gd" id="5_hxnl2"]
 [ext_resource type="PackedScene" uid="uid://fusq7jk8t81d" path="res://Wind/wind_area.tscn" id="6_snkte"]
 [ext_resource type="PackedScene" uid="uid://bdc22p2eurhyc" path="res://Quests/quest_interaction.tscn" id="7_t1w4r"]
+[ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="8_e55xs"]
 [ext_resource type="PackedScene" uid="uid://cxg4fhhyfu5vt" path="res://Quests/dialog_ui.tscn" id="8_vq2mx"]
 
 [node name="Scene" type="Node3D"]
@@ -16,10 +16,6 @@
 [node name="Plane" parent="." instance=ExtResource("1_n5cfa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.96631, 18.3302)
 
-[node name="Water" parent="." node_paths=PackedStringArray("plane") instance=ExtResource("4_v8ok4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0180514, 0)
-plane = NodePath("../Plane")
-
 [node name="WorldGen" type="Node3D" parent="."]
 script = ExtResource("5_hxnl2")
 Characters = [null, null, null, null, null, null, null, null]
@@ -28,5 +24,6 @@ WindType = ExtResource("6_snkte")
 
 [node name="QuestInteraction" parent="." instance=ExtResource("7_t1w4r")]
 transform = Transform3D(14.6773, 0, 0, 0, 7.12535, 0, 0, 0, 14.962, -0.439928, 6.86953, -21.7448)
+DialogType = ExtResource("8_vq2mx")
 
-[node name="DialogUI" parent="." instance=ExtResource("8_vq2mx")]
+[node name="Water" parent="." instance=ExtResource("8_e55xs")]

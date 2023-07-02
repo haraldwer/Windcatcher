@@ -9,10 +9,10 @@
 script = ExtResource("1_u8avy")
 top_chance = 70
 
-[node name="Tree00" type="MeshInstance3D" parent="."]
+[node name="Tree_00" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_k23bj")
 mesh = ExtResource("1_1ghyr")
 
-[node name="Tree00Top" type="MeshInstance3D" parent="."]
+[node name="Tree_00_Top" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_k23bj")
 mesh = ExtResource("3_c73gb")

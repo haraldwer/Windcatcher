@@ -4,7 +4,7 @@ extends Node3D
 
 func _ready():
 	if randf_range(0, 100) > top_chance:
-		var top = get_node("Tree00Top")
+		var top = get_node("Tree_00_Top")
 		top.free()
 	pass 
 
