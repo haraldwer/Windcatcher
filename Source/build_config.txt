@@ -1,0 +1,1 @@
+platform=windows target=editor bits=64 dev_build=no dev_mode=no debug_symbols=no optimize=speed lto=auto -j16 custom_modules=../Windcatcher/Source

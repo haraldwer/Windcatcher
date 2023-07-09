@@ -10,6 +10,12 @@ export_presets.cfg
 .mono/
 data_*/
 
-# Godot exe
-Godot/*
+# Builds
 Builds/*
+
+# Compile results
+*.obj
+__pycache__/
+
+# IDEA
+.idea/

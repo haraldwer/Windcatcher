@@ -1,0 +1,12 @@
+# SCsub
+
+Import('env')
+
+module_env = env.Clone()
+module_env.add_source_files(env.modules_sources, "*.cpp")
+
+# Append CCFLAGS flags for both C and C++ code.
+# module_env.Append(CCFLAGS=['-O2'])
+
+# Append includes
+# module_env.Append(CPPPATH=["mylib/include"])
