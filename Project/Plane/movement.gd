@@ -1,3 +1,4 @@
+class_name Movement
 extends CharacterBody3D
 
 var input_vector = Vector2.ZERO
@@ -34,7 +35,7 @@ var wind
 func _ready():
 	wind = get_parent().get_node("Wind")
 	pass
-	
+
 func _set_input(vector, look):
 	input_vector = vector
 	input_look = look
@@ -53,7 +54,7 @@ func _process(delta):
 	aim_rotation.x += SENSITIVITY * input_look.y
 	aim_rotation.y += SENSITIVITY * input_look.x
 	pass
-	
+
 func _physics_process(delta):
 	
 	# Friction

@@ -1,3 +1,4 @@
+class_name QuestInteraction
 extends Node3D
 
 @export var DialogType:PackedScene

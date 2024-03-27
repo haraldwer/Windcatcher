@@ -1,3 +1,4 @@
+class_name VegetationGen
 extends Node
 
 const DENSITY = 0.01

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://6twvkyisln73"]
+[gd_scene load_steps=12 format=3 uid="uid://6twvkyisln73"]
 
 [ext_resource type="PackedScene" uid="uid://b76w4c0nnj160" path="res://Plane/plane.tscn" id="1_n5cfa"]
 [ext_resource type="PackedScene" uid="uid://dy3xskwene4l0" path="res://Rendering/lighting.tscn" id="1_qkj3b"]
@@ -8,6 +8,26 @@
 [ext_resource type="PackedScene" uid="uid://bdc22p2eurhyc" path="res://Quests/quest_interaction.tscn" id="7_t1w4r"]
 [ext_resource type="PackedScene" uid="uid://b8auespiprw18" path="res://Water/water.tscn" id="8_e55xs"]
 [ext_resource type="PackedScene" uid="uid://cxg4fhhyfu5vt" path="res://Quests/dialog_ui.tscn" id="8_vq2mx"]
+[ext_resource type="Shader" path="res://Clouds/cloud.gdshader" id="9_snq3c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jxe24"]
+render_priority = 0
+shader = ExtResource("9_snq3c")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/box_bounds = Vector3(10, 10, 10)
+shader_parameter/edge_fade = 0.2
+shader_parameter/noise_scale = 0.2
+shader_parameter/flat_noise_scale = 0.5
+shader_parameter/flat_shape_fade = 0.5
+shader_parameter/density_mul = 3.0
+shader_parameter/density_max = 1.0
+shader_parameter/min_iter = 8
+shader_parameter/max_iter = 32
+shader_parameter/iter_dist = 100.0
+shader_parameter/iter_pow = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_y5ijr"]
+material = SubResource("ShaderMaterial_jxe24")
 
 [node name="Scene" type="Node3D"]
 
@@ -27,3 +47,7 @@ transform = Transform3D(14.6773, 0, 0, 0, 7.12535, 0, 0, 0, 14.962, -0.439928, 6
 DialogType = ExtResource("8_vq2mx")
 
 [node name="Water" parent="." instance=ExtResource("8_e55xs")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.550135, 15.1038, 0)
+mesh = SubResource("BoxMesh_y5ijr")

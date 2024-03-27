@@ -12,6 +12,7 @@ data_*/
 
 # Builds
 Builds/*
+Godot/*
 
 # Compile results
 *.obj

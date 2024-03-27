@@ -1,3 +1,4 @@
+class_name Dock
 extends Node3D
 
 const MAX_DEPTH = 5

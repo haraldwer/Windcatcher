@@ -49,10 +49,10 @@ shape = SubResource("ConvexPolygonShape3D_2ibej")
 
 [node name="Plane" type="MeshInstance3D" parent="CharacterBody"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0852437, 0, 1.15327)
-material_override = ExtResource("2_otbyx")
 gi_mode = 0
 mesh = ExtResource("1_q0qal")
 skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_otbyx")
 
 [node name="Propeller" type="Node3D" parent="CharacterBody/Plane"]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2.94243, 0.311137, 0.0852438)

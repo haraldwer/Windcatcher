@@ -3,9 +3,6 @@
 [resource]
 background_mode = 1
 background_color = Color(0.737255, 0.882353, 0.956863, 1)
-ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.737255, 0.882353, 0.956863, 1)
 fog_density = 0.0005

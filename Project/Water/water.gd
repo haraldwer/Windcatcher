@@ -1,3 +1,4 @@
+class_name Water
 extends Node3D
 
 @export var plane : Node3D

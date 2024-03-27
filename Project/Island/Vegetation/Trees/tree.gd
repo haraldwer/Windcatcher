@@ -1,3 +1,4 @@
+class_name VegTree
 extends Node3D
 
 @export var top_chance = 50

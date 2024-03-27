@@ -1,3 +1,4 @@
+class_name Island
 extends Node3D
 
 const MIN_SIZE = 100

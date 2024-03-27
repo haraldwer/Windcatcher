@@ -1,3 +1,4 @@
+class_name Propeller
 extends Node3D
 
 const MAX_SPEED = 50.0

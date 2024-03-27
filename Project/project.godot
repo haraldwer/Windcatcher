@@ -12,12 +12,16 @@ config_version=5
 
 config/name="Windcatcher"
 run/main_scene="res://scene.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -56,7 +60,6 @@ down={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 anti_aliasing/quality/use_taa=true
 
 [shader_globals]

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bnpl36m17k8h7"]
+
+[ext_resource type="Shader" path="res://Addons/flexible_toon_shader/hatch_toon.gdshader" id="1_cedwj"]
+[ext_resource type="Texture2D" uid="uid://u42hu4u7scy" path="res://atlas.png" id="2_8g2og"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cedwj")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = null
+shader_parameter/use_attenuation = true
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/hatch_scale = 2.0
+shader_parameter/use_triplanar = true
+shader_parameter/albedo_texture = ExtResource("2_8g2og")

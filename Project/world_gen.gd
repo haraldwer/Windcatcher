@@ -1,3 +1,4 @@
+class_name WorldGen
 extends Node3D
 
 @export var Characters : Array

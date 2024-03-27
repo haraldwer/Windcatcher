@@ -1,3 +1,4 @@
+class_name Wind
 extends Node
 
 var area_count = 0

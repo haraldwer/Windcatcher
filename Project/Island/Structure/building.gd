@@ -1,3 +1,4 @@
+class_name Building
 extends Node3D
 
 const MIN_SIZE = 5
@@ -21,7 +22,6 @@ func try_place() -> bool:
 	return false
 
 func generate():
-	
 	var size = Vector3(
 		randf_range(MIN_SIZE, MAX_SIZE), 
 		randf_range(MIN_HEIGHT, MAX_HEIGHT),
@@ -29,9 +29,7 @@ func generate():
 	var rot = randf_range(0, PI * 2)
 	global_rotation.y = rot
 	scale = size
-	
 	for i in 100:
 		if try_place():
 			break
-	
 	pass

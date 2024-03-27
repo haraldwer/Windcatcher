@@ -1,3 +1,4 @@
+class_name WindArea
 extends Node3D
 
 func _ready():

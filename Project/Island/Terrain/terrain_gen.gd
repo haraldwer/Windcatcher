@@ -1,3 +1,4 @@
+class_name TerrainGen
 extends MeshInstance3D
 
 func get_vertex(x, y, dx, dy) -> Vector3:

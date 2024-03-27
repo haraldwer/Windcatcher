@@ -82,6 +82,7 @@ render_target_clear_mode = 2
 render_target_update_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="Simulation"]
+visible = false
 material = SubResource("ShaderMaterial_umjf2")
 anchors_preset = 15
 anchor_right = 1.0
